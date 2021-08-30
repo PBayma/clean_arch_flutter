@@ -8,7 +8,7 @@ import 'package:clean_flutter_tdd/core/error/failures.dart';
 import 'package:clean_flutter_tdd/features/number_trivia/domain/repositories/number_trivia_repository.dart';
 import 'package:dartz/dartz.dart';
 
-typedef Future<NumberTriviaModel> _ConcreteOrRandomChooser();
+typedef _ConcreteOrRandomChooser = Future<NumberTriviaModel> Function();
 
 class NumberTriviaRepositoryImpl extends NumberTriviaRepository {
   final NumberTriviaRemoteDataSource remoteDataSource;
