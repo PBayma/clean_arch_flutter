@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:bloc_test/bloc_test.dart';
 import 'package:clean_flutter_tdd/core/util/input_converter.dart';
 import 'package:clean_flutter_tdd/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:clean_flutter_tdd/features/number_trivia/domain/usecases/get_concrete_number_trivia.dart';
@@ -36,15 +39,15 @@ void main() {
 
       //act
       bloc.add(const GetTriviaForConcreteNumber(tNumberString));
-      await untilCalled(mockInputConverter.stringToUnsignedInteger(any));
 
       //assert
-      final expected = [
-        EmptyNumberTriviaState(),
-        const ErrorNumberTriviaState(message: INVALID_INPUT_FAILURE_MESSAGE)
-      ];
-      expectLater(bloc.state, emitsInOrder(expected));
-    }, skip: 'Teste não funcional');
+      await expectLater(
+          bloc.stream,
+          emitsInOrder(<NumberTriviaState>[
+            LoadingNumberTriviaState(),
+            const ErrorNumberTriviaState(message: INVALID_INPUT_FAILURE_MESSAGE)
+          ]));
+    });
     test(
         'should call the input converter to validate and convert the string to integer',
         () async {
@@ -56,6 +59,6 @@ void main() {
       await untilCalled(mockInputConverter.stringToUnsignedInteger(any));
       //assert
       verify(mockInputConverter.stringToUnsignedInteger(tNumberString));
-    }, skip: 'Teste com funcionalidade ainda não implementada');
+    });
   });
 }
