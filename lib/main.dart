@@ -3,7 +3,9 @@ import 'package:clean_flutter_tdd/injection_container.dart' as di;
 import 'package:flutter/material.dart';
 
 main() async {
-  // await di.init();
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await di.init();
   runApp(MyApp());
 }
 
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
           secondary: Colors.green.shade600,
         ),
       ),
-      home: const NumberTriviaPage(),
+      home: NumberTriviaPage(),
     );
   }
 }
