@@ -8,11 +8,14 @@ import 'network_info_test.mocks.dart';
 
 @GenerateMocks([Connectivity])
 void main() {
-  NetworkInfoImpl networkInfoImpl;
-  MockConnectivity mockConnectivityChecker;
+  late NetworkInfoImpl networkInfoImpl;
+  late MockConnectivity mockConnectivityChecker;
 
-  mockConnectivityChecker = MockConnectivity();
-  networkInfoImpl = NetworkInfoImpl(mockConnectivityChecker);
+  setUp(() {
+    mockConnectivityChecker = MockConnectivity();
+    networkInfoImpl = NetworkInfoImpl(mockConnectivityChecker);
+  });
+
   group('isConnected', () {
     test('should foward the call to Connectivity has a mobile connection',
         () async {

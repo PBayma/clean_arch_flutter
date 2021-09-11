@@ -11,12 +11,13 @@ import 'number_trivia_remote_data_source_test.mocks.dart';
 
 @GenerateMocks([http.Client])
 void main() {
-  NumberTriviaRemoteDataSourceImpl dataSource;
-  MockClient mockClient = MockClient();
-
-  dataSource = NumberTriviaRemoteDataSourceImpl(client: mockClient);
+  late NumberTriviaRemoteDataSourceImpl dataSource;
+  late MockClient mockClient;
 
   setUp(() {
+    mockClient = MockClient();
+    dataSource = NumberTriviaRemoteDataSourceImpl(client: mockClient);
+
     when(mockClient.get(any, headers: anyNamed('headers')))
         .thenAnswer((_) async => http.Response(fixture('trivia.json'), 200));
   });
@@ -24,6 +25,7 @@ void main() {
   group('getConcreteNumberTrivia', () {
     const tNumber = 1;
     const tNumberTriviaModel = NumberTriviaModel(number: 1, text: 'test text');
+
     test(
         '''should perform a GET request on a URL with number being the endpoint 
         and with application/json''', () async {
@@ -59,7 +61,6 @@ void main() {
     });
   });
   group('getRandomNumberTrivia', () {
-    const tNumber = 1;
     const tNumberTriviaModel = NumberTriviaModel(number: 1, text: 'test text');
     test(
         '''should perform a GET request on a URL with number being the endpoint 
@@ -70,7 +71,7 @@ void main() {
       //assert
       verify(
         mockClient.get(
-          Uri.http('numbersapi.com', '/$tNumber'),
+          Uri.http('numbersapi.com', '/random'),
           headers: {'Content-Type': 'application/json'},
         ),
       );

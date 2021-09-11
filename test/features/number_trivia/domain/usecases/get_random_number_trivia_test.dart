@@ -11,11 +11,13 @@ import 'get_concrete_number_trivia_test.mocks.dart';
 
 @GenerateMocks([NumberTriviaRepository])
 void main() {
-  GetRandomNumberTrivia usecase;
-  MockNumberTriviaRepository mockNumberTriviaRepository;
+  late GetRandomNumberTrivia usecase;
+  late MockNumberTriviaRepository mockNumberTriviaRepository;
 
-  mockNumberTriviaRepository = MockNumberTriviaRepository();
-  usecase = GetRandomNumberTrivia(mockNumberTriviaRepository);
+  setUp(() {
+    mockNumberTriviaRepository = MockNumberTriviaRepository();
+    usecase = GetRandomNumberTrivia(mockNumberTriviaRepository);
+  });
 
   const testNumberTrivia =
       NumberTrivia(text: "Esse numero é o numero da sorte", number: 1);

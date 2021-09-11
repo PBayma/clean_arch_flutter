@@ -14,17 +14,20 @@ import 'number_trivia_bloc_test.mocks.dart';
 
 @GenerateMocks([GetRandomNumberTrivia, GetConcreteNumberTrivia, InputConverter])
 void main() {
-  NumberTriviaBloc bloc;
-  MockGetConcreteNumberTrivia mockGetConcreteNumberTrivia =
-      MockGetConcreteNumberTrivia();
-  MockGetRandomNumberTrivia mockGetRandomNumberTrivia =
-      MockGetRandomNumberTrivia();
-  MockInputConverter mockInputConverter = MockInputConverter();
+  late NumberTriviaBloc bloc;
+  late MockGetConcreteNumberTrivia mockGetConcreteNumberTrivia;
+  late MockGetRandomNumberTrivia mockGetRandomNumberTrivia;
+  late MockInputConverter mockInputConverter;
 
-  bloc = NumberTriviaBloc(
-      getConcreteNumberTrivia: mockGetConcreteNumberTrivia,
-      getRandomNumberTrivia: mockGetRandomNumberTrivia,
-      inputConverter: mockInputConverter);
+  setUp(() {
+    mockGetRandomNumberTrivia = MockGetRandomNumberTrivia();
+    mockGetConcreteNumberTrivia = MockGetConcreteNumberTrivia();
+    mockInputConverter = MockInputConverter();
+    bloc = NumberTriviaBloc(
+        getConcreteNumberTrivia: mockGetConcreteNumberTrivia,
+        getRandomNumberTrivia: mockGetRandomNumberTrivia,
+        inputConverter: mockInputConverter);
+  });
 
   group(
     'get trivia for concrete number',
