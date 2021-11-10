@@ -2,7 +2,8 @@
 
 A Flutter project using TDD, Clean Architecture, Functional to treat some data and GetIt to dependency injection.
 
-Everything in domain is a raw class or signature of class that i'm gonna use. On Data has all implementation of requisitions.
+- Everything in domain is a raw class or signature of class that i'm gonna use. 
+- On Data has all implementation of requisitions.
 
 ## Getting Started
 
