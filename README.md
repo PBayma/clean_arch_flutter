@@ -1,6 +1,6 @@
-# clean_flutter_tdd
+# Clean Flutter project using TDD
 
-A new Flutter project.
+A Flutter project using TDD, Clean Architecture, Functional to treat some data and GetIt to dependency injection.
 
 ## Getting Started
 
